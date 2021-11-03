@@ -14,12 +14,59 @@
 }
 
 .daybook__sidebar{
-    position: fixed;
-    top: 50px;
+    border-right: 1px solid black;
+    height: 100%;
     left: 0px;
+    overflow-y: scroll;
+    position: fixed;
+    scrollbar-width: thin;
+    top: 50px;
+    width: 250px;
+}
+
+.daybook__sidebar input{
+    margin: 5px;
+    height: 35px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid lighten($color: $primary, $amount: 30);
+    width: 230px;
+    &:focus{
+        outline: none;
+    }
+}
+
+.daybook__entry{
+    padding: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    &:hover{
+        background-color: darken($color: #fff, $amount: 20);
+    }
+}
+
+.daybook__entrytile{
+    display: flex;
+    align-items: center;
+}
+
+.daybook__entrytile span:first-child{
+    font-size: 1.5rem;
+    color: $secondary;
+}
+
+.daybook__entrytile span:nth-child(2){
+    font-size: 1.2rem;
+    color: #000;
+    margin-right: 10px;
+}
+
+.daybook__entry__body{
+    margin-top: 10px;
 }
 
 .daybook__main{
     position: fixed;
-    left: 150px;
+    left: 250px;
 }
