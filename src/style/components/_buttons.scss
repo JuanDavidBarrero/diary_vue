@@ -1,0 +1,27 @@
+.btn {
+    background-color: transparent;
+    border: none;
+    color: #4E97AE;
+    cursor: pointer;
+    padding: 7px 20px ;
+    text-align: center;
+    transition: background-color 0.3s ease-in;
+
+    &:focus{
+        outline: none;
+    }
+
+    &:active{
+        transform: scale(0.95);
+    }
+    &:hover{
+      color: #fff;
+      background-color: lighten($color: #4E97AE, $amount: 5);  
+    }
+
+}
+
+.border {
+    border: 1px solid #4E97AE
+}
+
