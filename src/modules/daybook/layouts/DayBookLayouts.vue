@@ -4,7 +4,7 @@
   <Sidebar />
 
   <main class="daybook__main">
-    Contenido principal
+    <router-view/>
   </main>
 </template>
 

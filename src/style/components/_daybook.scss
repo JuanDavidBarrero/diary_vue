@@ -66,7 +66,44 @@
     margin-top: 10px;
 }
 
+
 .daybook__main{
+    width: 80%;
     position: fixed;
     left: 250px;
+
+}
+
+.daybook__noEntry{
+    display: flex;
+    width: calc(100% + 205px);
+    height: calc(100vh - 200px);
+    justify-content: center;
+    align-items: center;
+}
+
+.daybook__header_entry{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+.daybook__date{
+    display: flex;
+    align-items: center;
+}
+
+.daybook__date span:first-child{
+    color: $secondary;
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+
+.daybook__date span:nth-child(2){
+    margin-right: 10px;
+    color: $primary;
+    font-size: 1.4rem;
 }

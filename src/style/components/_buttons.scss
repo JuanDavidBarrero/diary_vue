@@ -25,3 +25,41 @@
     border: 1px solid #4E97AE
 }
 
+.btn-float{
+    position: fixed;
+    right: 25px;
+    color: white;
+    cursor: pointer;
+    bottom: 25px;
+    padding: 20px;
+    border-radius: 100%;
+    background-color: $primary;
+
+    &:active{
+        transform: scale(0.98);
+    }
+}
+
+.btn-second{
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    &:active{
+        transform: scale(0.98);
+    }
+}
+
+.btn-second i{
+    margin-left: 5px;
+}
+
+.danger{
+    background-color: $danger;
+}
+
+.primary{
+    background-color: $primary;
+}
