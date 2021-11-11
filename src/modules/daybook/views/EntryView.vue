@@ -18,17 +18,48 @@
   </header>
   <hr />
 
-  <textarea placeholder="¿Que sucedio hoy?"></textarea>
+  <textarea placeholder="¿Que sucedio hoy?" v-model="entry.text"></textarea>
   <img
     src="https://image.freepik.com/vector-gratis/lobo-cabeza-mascota-vector-logo_41786-33.jpg"
     alt="No hay imagen"
   />
-  <Fab icon="fa-save"/>
+  <Fab icon="fa-save" />
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
+import { mapGetters } from "vuex";
+
 export default {
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+
+  data(){
+    return {
+      entry: null,
+    }
+  },
+
+  computed: {
+    ...mapGetters("journal", ["getEntryById"]),
+  },
+
+  methods: {
+    loadEntry() {
+      const entry = this.getEntryById(this.id);
+      if (!entry) this.$router.push({name:'no-entry'})
+      this.entry = entry
+    },
+  },
+
+  created(){
+    this.loadEntry()
+  },
+
   components: {
     Fab: defineAsyncComponent(() => import("../components/FAB.vue")),
   },
@@ -48,8 +79,7 @@ textarea:focus {
   outline: none;
 }
 
-
-img{
+img {
   border: 1px solid black;
   box-shadow: 1px 5px 6px 2px rgba(0, 0, 0, 0.6);
   height: 150px;
