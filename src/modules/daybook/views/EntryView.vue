@@ -23,7 +23,7 @@
     src="https://image.freepik.com/vector-gratis/lobo-cabeza-mascota-vector-logo_41786-33.jpg"
     alt="No hay imagen"
   />
-  <Fab />
+  <Fab icon="fa-save"/>
 </template>
 
 <script>
