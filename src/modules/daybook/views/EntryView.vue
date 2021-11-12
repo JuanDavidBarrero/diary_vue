@@ -1,34 +1,36 @@
 <template>
-  <header class="daybook__header_entry">
-    <div class="daybook__date">
-      <span>15</span>
-      <span>Julio</span>
-      <p>2021 jueves</p>
-    </div>
-    <div>
-      <button class="btn-second danger">
-        Borrar
-        <i class="fas fa-trash-alt"></i>
-      </button>
-      <button class="btn-second primary">
-        Subir foto
-        <i class="fas fa-upload"></i>
-      </button>
-    </div>
-  </header>
-  <hr />
-
-  <textarea placeholder="¿Que sucedio hoy?" v-model="entry.text"></textarea>
-  <img
-    src="https://image.freepik.com/vector-gratis/lobo-cabeza-mascota-vector-logo_41786-33.jpg"
-    alt="No hay imagen"
-  />
-  <Fab icon="fa-save" />
+  <div v-if="entry">
+    <header class="daybook__header_entry">
+      <div class="daybook__date">
+        <span>{{ day }}</span>
+        <span>{{ month }}</span>
+        <p>{{ year }}</p>
+      </div>
+      <div>
+        <button class="btn-second danger">
+          Borrar
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        <button class="btn-second primary">
+          Subir foto
+          <i class="fas fa-upload"></i>
+        </button>
+      </div>
+    </header>
+    <hr />
+    <textarea placeholder="¿Que sucedio hoy?" v-model="entry.text"></textarea>
+    <img
+      src="https://image.freepik.com/vector-gratis/lobo-cabeza-mascota-vector-logo_41786-33.jpg"
+      alt="No hay imagen"
+    />
+    <Fab icon="fa-save" />
+  </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters } from "vuex";
+import getDayMonthYear from "../helpers/getDayMonthYear";
 
 export default {
   props: {
@@ -38,26 +40,45 @@ export default {
     },
   },
 
-  data(){
+  data() {
     return {
       entry: null,
-    }
+    };
   },
 
   computed: {
     ...mapGetters("journal", ["getEntryById"]),
+    day() {
+      const { day } = getDayMonthYear(this.entry.date);
+      return day;
+    },
+    month() {
+      const { month } = getDayMonthYear(this.entry.date);
+      console.log(month);
+      return month;
+    },
+    year() {
+      const { yearDay } = getDayMonthYear(this.entry.date);
+      return yearDay;
+    },
   },
 
   methods: {
     loadEntry() {
       const entry = this.getEntryById(this.id);
-      if (!entry) this.$router.push({name:'no-entry'})
-      this.entry = entry
+      if (!entry) this.$router.push({ name: "no-entry" });
+      this.entry = entry;
     },
   },
 
-  created(){
-    this.loadEntry()
+  created() {
+    this.loadEntry();
+  },
+
+  watch: {
+    id() {
+      this.loadEntry();
+    },
   },
 
   components: {
@@ -73,6 +94,7 @@ textarea {
   height: 800px;
   border: none;
   resize: none;
+  font-size: 20px;
 }
 
 textarea:focus {

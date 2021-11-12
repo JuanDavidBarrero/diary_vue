@@ -21,7 +21,7 @@
     position: fixed;
     scrollbar-width: thin;
     top: 50px;
-    width: 250px;
+    width: 300px;
 }
 
 .daybook__sidebar input{
@@ -30,7 +30,7 @@
     border-radius: 5px;
     padding: 10px;
     border: 1px solid lighten($color: $primary, $amount: 30);
-    width: 210px;
+    width: 260px;
     &:focus{
         outline: none;
     }
@@ -70,7 +70,7 @@
 .daybook__main{
     width: 80%;
     position: fixed;
-    left: 250px;
+    left: 300px;
 
 }
 

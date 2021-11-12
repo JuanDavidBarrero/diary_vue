@@ -59,7 +59,7 @@ export default {
     },
     month() {
       const date = new Date(this.entry.date);
-      return months[date.getDate()];
+      return months[date.getMonth()];
     },
     year() {
       const date = new Date(this.entry.date);
