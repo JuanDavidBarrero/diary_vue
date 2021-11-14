@@ -54,7 +54,6 @@ export default {
     },
     month() {
       const { month } = getDayMonthYear(this.entry.date);
-      console.log(month);
       return month;
     },
     year() {
