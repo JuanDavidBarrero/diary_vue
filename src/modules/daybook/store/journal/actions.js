@@ -5,9 +5,9 @@
 
 import journalApi from '../../../../api/JournalApi'
 
-export const loadEntries = async({commit}) => {
-   const {data} = await journalApi.get('/entries.json')
-   const entries = []
+export const loadEntries = async ({ commit }) => {
+    const { data } = await journalApi.get('/entries.json')
+    const entries = []
     Object.keys(data).forEach(id => {
         entries.push({
             id,
@@ -15,13 +15,15 @@ export const loadEntries = async({commit}) => {
         })
     })
 
-    console.log(entries[0]);
-    
-    commit('setEntries',entries)
-}
-export const updateEntry = async(/* {commit} */) => {
 
+    commit('setEntries', entries)
 }
-export const createEntry = async(/* {commit} */) => {
+export const updateEntry = async ({ commit }, entry) => {
+    const { date, picture, text } = entry;
+    const dataToSave = { date, picture, text };
+    await journalApi.put(`/entries/${entry.id}.json`, dataToSave)
+    commit('updateEntry', {...entry})
+}
+export const createEntry = async (/* {commit} */) => {
 
 }

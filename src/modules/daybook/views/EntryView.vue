@@ -23,13 +23,13 @@
       src="https://image.freepik.com/vector-gratis/lobo-cabeza-mascota-vector-logo_41786-33.jpg"
       alt="No hay imagen"
     />
-    <Fab icon="fa-save" />
+    <Fab icon="fa-save" @on:click="saveEntry" />
   </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import getDayMonthYear from "../helpers/getDayMonthYear";
 
 export default {
@@ -48,6 +48,7 @@ export default {
 
   computed: {
     ...mapGetters("journal", ["getEntryById"]),
+
     day() {
       const { day } = getDayMonthYear(this.entry.date);
       return day;
@@ -63,10 +64,14 @@ export default {
   },
 
   methods: {
+    ...mapActions("journal", ["updateEntry"]),
     loadEntry() {
       const entry = this.getEntryById(this.id);
       if (!entry) this.$router.push({ name: "no-entry" });
       this.entry = entry;
+    },
+    async saveEntry() {
+      this.updateEntry(this.entry);
     },
   },
 
